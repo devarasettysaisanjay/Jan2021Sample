@@ -21,14 +21,38 @@ public class TestController {
 	
 	@GetMapping("/test")
 	public String test(@RequestParam(name="userName")String name) {
-		return "This is First Spring Boot Application started by" +name;
+		return "This is First Spring Boot Application started by " +name;
 		
 	}
 	
 	
+	@PostMapping("/updateEmployee")
+	public  ResponseEntity<Integer>  updateEmployee(@RequestBody EmployeeDetails employee) {
+	int i= employeeService.updateEmployee(employee);
+	if(1!=0) {
+		return ResponseEntity.ok().body(i);
+	}
+	else {
+		return null;
+	}
+	
+	}
+	
 	@PostMapping("/saveEmployee")
 	public  ResponseEntity<Employee>  saveEmployee(@RequestBody EmployeeDetails employee) {
 	Employee e= employeeService.processEmployeeDetails(employee);
+	if(null!=e) {
+		return ResponseEntity.ok().body(e);
+	}
+	else {
+		return null;
+	}
+	
+	}
+	
+	@PostMapping("/getEmployee")
+	public  ResponseEntity<Employee>  getEmployee(@RequestParam(name="id") Long id) {
+	Employee e= employeeService.getEmployee(id);
 	if(null!=e) {
 		return ResponseEntity.ok().body(e);
 	}

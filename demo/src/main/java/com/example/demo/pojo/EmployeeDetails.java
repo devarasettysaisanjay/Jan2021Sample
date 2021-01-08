@@ -10,15 +10,14 @@ public class EmployeeDetails {
     private String lastName;
     private String emailId;
     
-    private List<EmpBankDetails> bankEmpDetails  =null;
+  //  private List<EmpBankDetails> bankEmpDetails  =null;
     
     
-	public List<EmpBankDetails> getBankEmpDetails() {
-		return bankEmpDetails;
-	}
-	public void setBankEmpDetails(List<EmpBankDetails> bankEmpDetails) {
-		this.bankEmpDetails = bankEmpDetails;
-	}
+	/*
+	 * public List<EmpBankDetails> getBankEmpDetails() { return bankEmpDetails; }
+	 * public void setBankEmpDetails(List<EmpBankDetails> bankEmpDetails) {
+	 * this.bankEmpDetails = bankEmpDetails; }
+	 */
 	public long getId() {
 		return id;
 	}
@@ -42,6 +41,11 @@ public class EmployeeDetails {
 	}
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
+	}
+	@Override
+	public String toString() {
+		return "EmployeeDetails [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailId="
+				+ emailId + "]";
 	}
     
 

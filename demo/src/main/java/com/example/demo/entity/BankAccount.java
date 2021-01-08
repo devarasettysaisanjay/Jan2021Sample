@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 
 	
 	
-	@Entity
+	//@Entity
 	public class BankAccount  implements Serializable{
 		
 		

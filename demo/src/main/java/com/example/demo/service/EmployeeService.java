@@ -2,8 +2,11 @@ package com.example.demo.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import com.example.demo.entity.BankAccount;
@@ -40,6 +43,21 @@ public class EmployeeService {
 		return empRepo.saveAndFlush(e);
 		
 
+	}
+
+    // @CachePut(value="updateEmp",key="#employee")
+	public int updateEmployee(EmployeeDetails employee) {
+		Optional<Employee> emp = empRepo.findById(employee.getId());
+		if (null != emp.get())
+			return empRepo.updateEmployee(employee.getId(), employee.getEmailId());
+		return 0;
+	}
+
+	
+	@Cacheable(value = "employees",key="#id")
+	public Employee getEmployee(Long id) {
+		Optional<Employee> emp= empRepo.findById(id);
+		return emp.get();
 	}
 
 	
